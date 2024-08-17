@@ -16,3 +16,6 @@
   * [最小生成树-Kruskal](/algorithm/graph/Kruskal.md)
   * [Floyd-Warshall](/algorithm/graph/Floyd-Warshall)
   * [最短路径](/algorithm/graph/shortest-path.md)
+
+* **数学**
+  * [快速幂](/algorithm/math/快速幂.md)
