@@ -12,7 +12,7 @@
   - 优化阶段：基于查询成本的考虑， 选择查询成本最小的执行计划；
   - 执行阶段：根据执行计划执行 SQL 查询语句，从存储引擎读取记录，返回给客户端；
 
-<img src="https://cdn.xiaolincoding.com/gh/xiaolincoder/mysql/sql%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B/mysql%E6%9F%A5%E8%AF%A2%E6%B5%81%E7%A8%8B.png" alt="查询语句执行流程" style="zoom:67%;" /> 
+<img src="https://cdn.xiaolincoding.com/gh/xiaolincoder/mysql/sql%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B/mysql%E6%9F%A5%E8%AF%A2%E6%B5%81%E7%A8%8B.png" alt="查询语句执行流程" style="zoom:67%;" />
 
 ### 2 Mysql 行格式 (COMPACT)
 
@@ -51,15 +51,11 @@ Compact 行格式针对行溢出的处理是这样的：当发生行溢出时，
 
 Compressed 和 Dynamic 这两种格式采用完全的行溢出方式，记录的真实数据处不会存储该列的一部分数据，只存储 20 个字节的指针来指向溢出页。而实际的数据都存储在溢出页中。
 
-
-
 ## 索引
 
-<img src="https://cdn.xiaolincoding.com/gh/xiaolincoder/mysql/%E7%B4%A2%E5%BC%95/%E7%B4%A2%E5%BC%95%E6%8F%90%E7%BA%B2.png" alt="img" style="zoom:33%;text-align:left" /> 
+<img src="https://cdn.xiaolincoding.com/gh/xiaolincoder/mysql/%E7%B4%A2%E5%BC%95/%E7%B4%A2%E5%BC%95%E6%8F%90%E7%BA%B2.png" alt="img" style="zoom:33%;text-align:left" />
 
-
-
-  ### 什么时候适用索引？
+### 什么时候适用索引？
 
 - 字段有唯一性限制的，比如商品编码；
 - 经常用于 `WHERE` 查询条件的字段，这样能够提高整个表的查询速度，如果查询条件不是一个字段，可以建立联合索引。
@@ -67,7 +63,7 @@ Compressed 和 Dynamic 这两种格式采用完全的行溢出方式，记录的
 
 #### 什么时候不需要创建索引？
 
-- `WHERE` 条件，`GROUP BY ` 和  `ORDER BY` 里用不到的字段，索引的价值是快速定位，如果起不到定位的字段通常是不需要创建索引的，因为索引是会占用物理空间的。
+- `WHERE` 条件，`GROUP BY` 和  `ORDER BY` 里用不到的字段，索引的价值是快速定位，如果起不到定位的字段通常是不需要创建索引的，因为索引是会占用物理空间的。
 - 字段中存在大量重复数据，不需要创建索引，比如性别字段，只有男女，如果数据库表中，男女的记录分布均匀，那么无论搜索哪个值都可能得到一半的数据。在这些情况下，还不如不要索引，因为 MySQL 还有一个查询优化器，查询优化器发现某个值出现在表的数据行中的百分比很高的时候，它一般会忽略索引，进行全表扫描。
 - 表数据太少的时候，不需要创建索引；
 - 经常更新的字段不用创建索引，比如不要对电商项目的用户余额建立索引，因为索引字段频繁修改，由于要维护 B+Tree的有序性，那么就需要频繁的重建索引，这个过程是会影响数据库性能的。
@@ -90,38 +86,3 @@ Compressed 和 Dynamic 这两种格式采用完全的行溢出方式，记录的
 - 在 WHERE 子句中，如果在 OR 前的条件列是索引列，而在 OR 后的条件列不是索引列，那么索引会失效。
 
 为什么要采用B+树作为索引
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
